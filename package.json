@@ -1,0 +1,29 @@
+{
+  "name": "prevent-pull-refresh",
+  "version": "0.0.1",
+  "description": "Preventing the pull-to-refresh effect browser on mobile",
+  "main": "index.min.js",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production babel index.js -o index.min.js -s"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-minify": "^0.2.0",
+    "cross-env": "^5.1.1"
+  },
+  "repository": "https://github.com/tronghiep92/prevent-pull-refresh",
+  "author": "Nghiệp <me@nghiepit.pro>",
+  "homepage": "http://nghiepit.pro",
+  "keywords": [
+    "pull refresh",
+    "refresh",
+    "prevent",
+    "browser",
+    "chrome",
+    "mobile",
+    "scroll",
+    "overscroll"
+  ],
+  "license": "MIT"
+}
