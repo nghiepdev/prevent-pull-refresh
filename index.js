@@ -1,6 +1,15 @@
 (() => {
   let lastTouchY = 0;
   let maybePrevent = false;
+  let supportsPassive = false;
+
+  try {
+    addEventListener('test', null, {
+      get passive() {
+        supportsPassive = true;
+      },
+    });
+  } catch (e) {}
 
   const setTouchStartPoint = event => {
     lastTouchY = event.touches[0].clientY;
@@ -30,6 +39,11 @@
     }
   };
 
-  document.addEventListener('touchstart', touchstartHandler);
+  document.addEventListener(
+    'touchstart',
+    touchstartHandler,
+    supportsPassive ? { passive: true } : false
+  );
+
   document.addEventListener('touchmove', touchmoveHandler);
 })();
