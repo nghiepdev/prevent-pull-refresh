@@ -1,15 +1,31 @@
 (() => {
+  const isChrome = window.chrome || navigator.userAgent.match('CriOS');
+  const isTouch = 'ontouchstart' in document.documentElement;
+
+  if (!isChrome || !isTouch) {
+    return;
+  }
+
+  let supportsOverscroll = false;
+  let supportsPassive = false;
   let lastTouchY = 0;
   let maybePrevent = false;
-  let supportsPassive = false;
 
   try {
+    if (CSS.supports('overscroll-behavior-y', 'contain')) {
+      supportsOverscroll = true;
+    }
+
     addEventListener('test', null, {
       get passive() {
         supportsPassive = true;
       },
     });
   } catch (e) {}
+
+  if (supportsOverscroll) {
+    return (document.body.style.overscrollBehaviorY = 'contain');
+  }
 
   const setTouchStartPoint = event => {
     lastTouchY = event.touches[0].clientY;
