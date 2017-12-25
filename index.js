@@ -15,17 +15,41 @@
     if (CSS.supports('overscroll-behavior-y', 'contain')) {
       supportsOverscroll = true;
     }
+  } catch (e) {}
 
+  if (supportsOverscroll) {
+    return (document.body.style.overscrollBehaviorY = 'contain');
+  } else {
+    const head = document.head || document.body;
+    const style = document.createElement('style');
+    const css = `
+      ::-webkit-scrollbar {
+        width: 5px;
+      }
+      ::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+    `;
+
+    style.type = 'text/css';
+
+    if (style.styleSheet) {
+      style.styleSheet.cssText = css;
+    } else {
+      style.appendChild(document.createTextNode(css));
+    }
+
+    head.appendChild(style);
+  }
+
+  try {
     addEventListener('test', null, {
       get passive() {
         supportsPassive = true;
       },
     });
   } catch (e) {}
-
-  if (supportsOverscroll) {
-    return (document.body.style.overscrollBehaviorY = 'contain');
-  }
 
   const setTouchStartPoint = event => {
     lastTouchY = event.touches[0].clientY;
