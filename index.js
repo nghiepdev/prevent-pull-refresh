@@ -30,6 +30,9 @@
         border-radius: 5px;
         background-color: rgba(0, 0, 0, 0.2);
       }
+      body {
+        -webkit-overflow-scrolling: auto!important;
+      }
     `;
 
     style.type = 'text/css';
