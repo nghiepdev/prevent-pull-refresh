@@ -1,6 +1,6 @@
 {
   "name": "prevent-pull-refresh",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Preventing the pull-to-refresh effect browser on mobile",
   "files": [
     "index.min.js",
