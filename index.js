@@ -85,8 +85,12 @@
   document.addEventListener(
     'touchstart',
     touchstartHandler,
-    supportsPassive ? { passive: true } : false
+    supportsPassive ? {passive: true} : false,
   );
 
-  document.addEventListener('touchmove', touchmoveHandler);
+  document.addEventListener(
+    'touchmove',
+    touchmoveHandler,
+    supportsPassive ? {passive: false} : false,
+  );
 })();
