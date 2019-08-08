@@ -1,6 +1,6 @@
 {
   "name": "prevent-pull-refresh",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Preventing the pull-to-refresh effect browser on mobile",
   "files": [
     "LICENCE",
