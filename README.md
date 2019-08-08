@@ -3,7 +3,7 @@
 Preventing the pull-to-refresh effect browser on mobile
 
 [![NPM version](https://img.shields.io/npm/v/prevent-pull-refresh.svg)](https://www.npmjs.com/package/prevent-pull-refresh)
-[![NPM monthly download](https://img.shields.io/npm/dm/prevent-pull-refresh.svg)](https://www.npmjs.com/package/prevent-pull-refresh)
+[![NPM yearly download](https://img.shields.io/npm/dy/prevent-pull-refresh.svg)](https://www.npmjs.com/package/prevent-pull-refresh)
 
 ## Document
 
@@ -32,4 +32,4 @@ or
 
 ## License
 
-MIT © [Nghiệp](http://nghiepit.pro)
+MIT © [Nghiep](http://nghiepit.dev)

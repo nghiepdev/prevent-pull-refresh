@@ -1,15 +1,17 @@
-(() => {
-  const isChrome = window.chrome || navigator.userAgent.match('CriOS');
-  const isTouch = 'ontouchstart' in document.documentElement;
+'use strict';
+
+(function() {
+  var isChrome = window.chrome || navigator.userAgent.match('CriOS');
+  var isTouch = 'ontouchstart' in document.documentElement;
 
   if (!isChrome || !isTouch) {
     return;
   }
 
-  let supportsOverscroll = false;
-  let supportsPassive = false;
-  let lastTouchY = 0;
-  let maybePrevent = false;
+  var supportsOverscroll = false;
+  var supportsPassive = false;
+  var lastTouchY = 0;
+  var maybePrevent = false;
 
   try {
     if (CSS.supports('overscroll-behavior-y', 'contain')) {
@@ -20,21 +22,10 @@
   if (supportsOverscroll) {
     return (document.body.style.overscrollBehaviorY = 'contain');
   } else {
-    const head = document.head || document.body;
-    const style = document.createElement('style');
-    const css = `
-      ::-webkit-scrollbar {
-        width: 5px;
-      }
-      ::-webkit-scrollbar-thumb {
-        border-radius: 5px;
-        background-color: rgba(0, 0, 0, 0.2);
-      }
-      body {
-        -webkit-overflow-scrolling: auto!important;
-      }
-    `;
-
+    var head = document.head || document.body;
+    var style = document.createElement('style');
+    var css =
+      '\n      ::-webkit-scrollbar {\n        width: 5px;\n      }\n      ::-webkit-scrollbar-thumb {\n        border-radius: 5px;\n        background-color: rgba(0, 0, 0, 0.2);\n      }\n      body {\n        -webkit-overflow-scrolling: auto!important;\n      }\n    ';
     style.type = 'text/css';
 
     if (style.styleSheet) {
@@ -47,35 +38,34 @@
   }
 
   try {
-    addEventListener('test', null, {
+    window.addEventListener('test', null, {
       get passive() {
         supportsPassive = true;
       },
     });
   } catch (e) {}
 
-  const setTouchStartPoint = event => {
+  var setTouchStartPoint = function setTouchStartPoint(event) {
     lastTouchY = event.touches[0].clientY;
   };
 
-  const isScrollingUp = event => {
-    const touchY = event.touches[0].clientY;
-    const touchYDelta = touchY - lastTouchY;
-
+  var isScrollingUp = function isScrollingUp(event) {
+    var touchY = event.touches[0].clientY;
+    var touchYDelta = touchY - lastTouchY;
     lastTouchY = touchY;
-
     return touchYDelta > 0;
   };
 
-  const touchstartHandler = event => {
+  var touchstartHandler = function touchstartHandler(event) {
     if (event.touches.length !== 1) return;
     setTouchStartPoint(event);
     maybePrevent = window.pageYOffset === 0;
   };
 
-  const touchmoveHandler = event => {
+  var touchmoveHandler = function touchmoveHandler(event) {
     if (maybePrevent) {
       maybePrevent = false;
+
       if (isScrollingUp(event)) {
         return event.preventDefault();
       }
@@ -85,12 +75,19 @@
   document.addEventListener(
     'touchstart',
     touchstartHandler,
-    supportsPassive ? {passive: true} : false,
+    supportsPassive
+      ? {
+          passive: true,
+        }
+      : false,
   );
-
   document.addEventListener(
     'touchmove',
     touchmoveHandler,
-    supportsPassive ? {passive: false} : false,
+    supportsPassive
+      ? {
+          passive: false,
+        }
+      : false,
   );
 })();
