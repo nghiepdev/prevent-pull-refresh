@@ -1,6 +1,6 @@
 'use strict';
 
-(function() {
+(function () {
   var isChrome = window.chrome || navigator.userAgent.match('CriOS');
   var isTouch = 'ontouchstart' in document.documentElement;
 
@@ -79,7 +79,7 @@
       ? {
           passive: true,
         }
-      : false,
+      : false
   );
   document.addEventListener(
     'touchmove',
@@ -88,6 +88,6 @@
       ? {
           passive: false,
         }
-      : false,
+      : false
   );
 })();

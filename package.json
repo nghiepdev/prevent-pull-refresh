@@ -2,10 +2,6 @@
   "name": "prevent-pull-refresh",
   "version": "1.0.5",
   "description": "Preventing the pull-to-refresh effect browser on mobile",
-  "files": [
-    "LICENCE",
-    "README.md"
-  ],
   "main": "index.js",
   "homepage": "https://github.com/nghiepit/prevent-pull-refresh",
   "repository": "https://github.com/nghiepit/prevent-pull-refresh",
